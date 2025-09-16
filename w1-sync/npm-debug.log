@@ -1,0 +1,271 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/root/.nvm/versions/node/v6.3.1/bin/node',
+1 verbose cli   '/root/.nvm/versions/node/v6.3.1/bin/npm',
+1 verbose cli   'i',
+1 verbose cli   '-D',
+1 verbose cli   'typescript',
+1 verbose cli   '@types/node',
+1 verbose cli   'ts-node-dev',
+1 verbose cli   'rimraf' ]
+2 info using npm@3.10.3
+3 info using node@v6.3.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData typescript
+8 silly fetchPackageMetaData @types/node
+9 silly fetchPackageMetaData ts-node-dev
+10 silly fetchPackageMetaData rimraf
+11 silly fetchNamedPackageData typescript
+12 silly mapToRegistry name typescript
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry data Result {
+15 silly mapToRegistry   raw: 'typescript',
+15 silly mapToRegistry   scope: null,
+15 silly mapToRegistry   escapedName: 'typescript',
+15 silly mapToRegistry   name: 'typescript',
+15 silly mapToRegistry   rawSpec: '',
+15 silly mapToRegistry   spec: 'latest',
+15 silly mapToRegistry   type: 'tag' }
+16 silly mapToRegistry uri https://registry.npmjs.org/typescript
+17 silly fetchNamedPackageData @types/node
+18 silly mapToRegistry name @types/node
+19 silly mapToRegistry scope (from package name) @types
+20 verbose mapToRegistry no registry URL found in name for scope @types
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry data Result {
+23 silly mapToRegistry   raw: '@types/node',
+23 silly mapToRegistry   scope: '@types',
+23 silly mapToRegistry   escapedName: '@types%2fnode',
+23 silly mapToRegistry   name: '@types/node',
+23 silly mapToRegistry   rawSpec: '',
+23 silly mapToRegistry   spec: 'latest',
+23 silly mapToRegistry   type: 'tag' }
+24 silly mapToRegistry uri https://registry.npmjs.org/@types%2fnode
+25 silly fetchNamedPackageData ts-node-dev
+26 silly mapToRegistry name ts-node-dev
+27 silly mapToRegistry using default registry
+28 silly mapToRegistry registry https://registry.npmjs.org/
+29 silly mapToRegistry data Result {
+29 silly mapToRegistry   raw: 'ts-node-dev',
+29 silly mapToRegistry   scope: null,
+29 silly mapToRegistry   escapedName: 'ts-node-dev',
+29 silly mapToRegistry   name: 'ts-node-dev',
+29 silly mapToRegistry   rawSpec: '',
+29 silly mapToRegistry   spec: 'latest',
+29 silly mapToRegistry   type: 'tag' }
+30 silly mapToRegistry uri https://registry.npmjs.org/ts-node-dev
+31 silly fetchNamedPackageData rimraf
+32 silly mapToRegistry name rimraf
+33 silly mapToRegistry using default registry
+34 silly mapToRegistry registry https://registry.npmjs.org/
+35 silly mapToRegistry data Result {
+35 silly mapToRegistry   raw: 'rimraf',
+35 silly mapToRegistry   scope: null,
+35 silly mapToRegistry   escapedName: 'rimraf',
+35 silly mapToRegistry   name: 'rimraf',
+35 silly mapToRegistry   rawSpec: '',
+35 silly mapToRegistry   spec: 'latest',
+35 silly mapToRegistry   type: 'tag' }
+36 silly mapToRegistry uri https://registry.npmjs.org/rimraf
+37 verbose request uri https://registry.npmjs.org/typescript
+38 verbose request no auth needed
+39 info attempt registry request try #1 at 5:25:35 PM
+40 verbose request id 7e651a4f85da5c25
+41 http request GET https://registry.npmjs.org/typescript
+42 verbose request uri https://registry.npmjs.org/@types%2fnode
+43 verbose request no auth needed
+44 info attempt registry request try #1 at 5:25:35 PM
+45 http request GET https://registry.npmjs.org/@types%2fnode
+46 verbose request uri https://registry.npmjs.org/ts-node-dev
+47 verbose request no auth needed
+48 info attempt registry request try #1 at 5:25:35 PM
+49 http request GET https://registry.npmjs.org/ts-node-dev
+50 verbose request uri https://registry.npmjs.org/rimraf
+51 verbose request no auth needed
+52 info attempt registry request try #1 at 5:25:35 PM
+53 http request GET https://registry.npmjs.org/rimraf
+54 http 200 https://registry.npmjs.org/ts-node-dev
+55 verbose headers { date: 'Tue, 16 Sep 2025 17:25:35 GMT',
+55 verbose headers   'content-type': 'application/json',
+55 verbose headers   'transfer-encoding': 'chunked',
+55 verbose headers   connection: 'keep-alive',
+55 verbose headers   'cf-ray': '980210613879556e-EWR',
+55 verbose headers   'cf-cache-status': 'HIT',
+55 verbose headers   'access-control-allow-origin': '*',
+55 verbose headers   age: '73',
+55 verbose headers   'cache-control': 'public, max-age=300',
+55 verbose headers   etag: 'W/"5e10fbc565d0e6063d0a2ad4758eef27"',
+55 verbose headers   'last-modified': 'Mon, 27 Jun 2022 22:14:08 GMT',
+55 verbose headers   vary: 'accept-encoding, accept',
+55 verbose headers   'set-cookie': [ '_cfuvid=TAbSxUY0uxwndBBEtLVO6.AQ0ZDuVgvta7sBLqbZpIE-1758043535579-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ],
+55 verbose headers   server: 'cloudflare',
+55 verbose headers   'content-encoding': 'gzip' }
+56 silly get cb [ 200,
+56 silly get   { date: 'Tue, 16 Sep 2025 17:25:35 GMT',
+56 silly get     'content-type': 'application/json',
+56 silly get     'transfer-encoding': 'chunked',
+56 silly get     connection: 'keep-alive',
+56 silly get     'cf-ray': '980210613879556e-EWR',
+56 silly get     'cf-cache-status': 'HIT',
+56 silly get     'access-control-allow-origin': '*',
+56 silly get     age: '73',
+56 silly get     'cache-control': 'public, max-age=300',
+56 silly get     etag: 'W/"5e10fbc565d0e6063d0a2ad4758eef27"',
+56 silly get     'last-modified': 'Mon, 27 Jun 2022 22:14:08 GMT',
+56 silly get     vary: 'accept-encoding, accept',
+56 silly get     'set-cookie': [ '_cfuvid=TAbSxUY0uxwndBBEtLVO6.AQ0ZDuVgvta7sBLqbZpIE-1758043535579-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ],
+56 silly get     server: 'cloudflare',
+56 silly get     'content-encoding': 'gzip' } ]
+57 verbose get saving ts-node-dev to /root/.npm/registry.npmjs.org/ts-node-dev/.cache.json
+58 verbose correctMkdir /root/.npm correctMkdir not in flight; initializing
+59 http 200 https://registry.npmjs.org/rimraf
+60 verbose headers { date: 'Tue, 16 Sep 2025 17:25:35 GMT',
+60 verbose headers   'content-type': 'application/json',
+60 verbose headers   'transfer-encoding': 'chunked',
+60 verbose headers   connection: 'keep-alive',
+60 verbose headers   'cf-ray': '980210613b897c9f-EWR',
+60 verbose headers   'cf-cache-status': 'HIT',
+60 verbose headers   'access-control-allow-origin': '*',
+60 verbose headers   age: '52',
+60 verbose headers   'cache-control': 'public, max-age=300',
+60 verbose headers   etag: 'W/"9f14a357fdca3418c09c4cffec978f6d"',
+60 verbose headers   'last-modified': 'Sat, 13 Sep 2025 16:42:36 GMT',
+60 verbose headers   vary: 'accept-encoding, accept',
+60 verbose headers   'set-cookie': [ '_cfuvid=tw3SgR18P7k8BnAcB2k9rXw7Mxe5D_OUwYJiTdC.mMg-1758043535604-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ],
+60 verbose headers   server: 'cloudflare',
+60 verbose headers   'content-encoding': 'gzip' }
+61 silly get cb [ 200,
+61 silly get   { date: 'Tue, 16 Sep 2025 17:25:35 GMT',
+61 silly get     'content-type': 'application/json',
+61 silly get     'transfer-encoding': 'chunked',
+61 silly get     connection: 'keep-alive',
+61 silly get     'cf-ray': '980210613b897c9f-EWR',
+61 silly get     'cf-cache-status': 'HIT',
+61 silly get     'access-control-allow-origin': '*',
+61 silly get     age: '52',
+61 silly get     'cache-control': 'public, max-age=300',
+61 silly get     etag: 'W/"9f14a357fdca3418c09c4cffec978f6d"',
+61 silly get     'last-modified': 'Sat, 13 Sep 2025 16:42:36 GMT',
+61 silly get     vary: 'accept-encoding, accept',
+61 silly get     'set-cookie': [ '_cfuvid=tw3SgR18P7k8BnAcB2k9rXw7Mxe5D_OUwYJiTdC.mMg-1758043535604-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ],
+61 silly get     server: 'cloudflare',
+61 silly get     'content-encoding': 'gzip' } ]
+62 verbose get saving rimraf to /root/.npm/registry.npmjs.org/rimraf/.cache.json
+63 verbose correctMkdir /root/.npm correctMkdir not in flight; initializing
+64 http 200 https://registry.npmjs.org/typescript
+65 verbose headers { date: 'Tue, 16 Sep 2025 17:25:35 GMT',
+65 verbose headers   'content-type': 'application/json',
+65 verbose headers   'transfer-encoding': 'chunked',
+65 verbose headers   connection: 'keep-alive',
+65 verbose headers   'cf-ray': '980210613b1bccb6-EWR',
+65 verbose headers   'cf-cache-status': 'HIT',
+65 verbose headers   'access-control-allow-origin': '*',
+65 verbose headers   age: '146',
+65 verbose headers   'cache-control': 'public, max-age=300',
+65 verbose headers   etag: 'W/"c71fce2eec36140a68ce15849fd35fe9"',
+65 verbose headers   'last-modified': 'Tue, 16 Sep 2025 07:15:45 GMT',
+65 verbose headers   vary: 'accept-encoding, accept',
+65 verbose headers   'set-cookie': [ '_cfuvid=0DjsxAZ4Y2IuDHgHeOMjaG00fzfa8Gk3L7pPan4d36Q-1758043535580-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ],
+65 verbose headers   server: 'cloudflare',
+65 verbose headers   'content-encoding': 'gzip' }
+66 silly get cb [ 200,
+66 silly get   { date: 'Tue, 16 Sep 2025 17:25:35 GMT',
+66 silly get     'content-type': 'application/json',
+66 silly get     'transfer-encoding': 'chunked',
+66 silly get     connection: 'keep-alive',
+66 silly get     'cf-ray': '980210613b1bccb6-EWR',
+66 silly get     'cf-cache-status': 'HIT',
+66 silly get     'access-control-allow-origin': '*',
+66 silly get     age: '146',
+66 silly get     'cache-control': 'public, max-age=300',
+66 silly get     etag: 'W/"c71fce2eec36140a68ce15849fd35fe9"',
+66 silly get     'last-modified': 'Tue, 16 Sep 2025 07:15:45 GMT',
+66 silly get     vary: 'accept-encoding, accept',
+66 silly get     'set-cookie': [ '_cfuvid=0DjsxAZ4Y2IuDHgHeOMjaG00fzfa8Gk3L7pPan4d36Q-1758043535580-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ],
+66 silly get     server: 'cloudflare',
+66 silly get     'content-encoding': 'gzip' } ]
+67 verbose get saving typescript to /root/.npm/registry.npmjs.org/typescript/.cache.json
+68 verbose correctMkdir /root/.npm correctMkdir not in flight; initializing
+69 http 200 https://registry.npmjs.org/@types%2fnode
+70 verbose headers { date: 'Tue, 16 Sep 2025 17:25:35 GMT',
+70 verbose headers   'content-type': 'application/json',
+70 verbose headers   'transfer-encoding': 'chunked',
+70 verbose headers   connection: 'keep-alive',
+70 verbose headers   'cf-ray': '980210613feecd7f-EWR',
+70 verbose headers   'cf-cache-status': 'HIT',
+70 verbose headers   'access-control-allow-origin': '*',
+70 verbose headers   age: '169',
+70 verbose headers   'cache-control': 'public, max-age=300',
+70 verbose headers   etag: 'W/"97ee6ca670895ee5585461b8663e2bd0"',
+70 verbose headers   'last-modified': 'Mon, 15 Sep 2025 20:03:08 GMT',
+70 verbose headers   vary: 'accept-encoding, accept',
+70 verbose headers   'set-cookie': [ '_cfuvid=tw3SgR18P7k8BnAcB2k9rXw7Mxe5D_OUwYJiTdC.mMg-1758043535604-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ],
+70 verbose headers   server: 'cloudflare',
+70 verbose headers   'content-encoding': 'gzip' }
+71 silly get cb [ 200,
+71 silly get   { date: 'Tue, 16 Sep 2025 17:25:35 GMT',
+71 silly get     'content-type': 'application/json',
+71 silly get     'transfer-encoding': 'chunked',
+71 silly get     connection: 'keep-alive',
+71 silly get     'cf-ray': '980210613feecd7f-EWR',
+71 silly get     'cf-cache-status': 'HIT',
+71 silly get     'access-control-allow-origin': '*',
+71 silly get     age: '169',
+71 silly get     'cache-control': 'public, max-age=300',
+71 silly get     etag: 'W/"97ee6ca670895ee5585461b8663e2bd0"',
+71 silly get     'last-modified': 'Mon, 15 Sep 2025 20:03:08 GMT',
+71 silly get     vary: 'accept-encoding, accept',
+71 silly get     'set-cookie': [ '_cfuvid=tw3SgR18P7k8BnAcB2k9rXw7Mxe5D_OUwYJiTdC.mMg-1758043535604-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ],
+71 silly get     server: 'cloudflare',
+71 silly get     'content-encoding': 'gzip' } ]
+72 verbose get saving @types/node to /root/.npm/registry.npmjs.org/_40types_252fnode/.cache.json
+73 verbose correctMkdir /root/.npm correctMkdir not in flight; initializing
+74 silly install normalizeTree
+75 silly loadCurrentTree Finishing
+76 silly loadIdealTree Starting
+77 silly install loadIdealTree
+78 silly cloneCurrentTree Starting
+79 silly install cloneCurrentTreeToIdealTree
+80 silly cloneCurrentTree Finishing
+81 silly loadShrinkwrap Starting
+82 silly install loadShrinkwrap
+83 silly loadShrinkwrap Finishing
+84 silly loadAllDepsIntoIdealTree Starting
+85 silly install loadAllDepsIntoIdealTree
+86 silly resolveWithNewModule ts-node-dev@2.0.0 checking installable status
+87 silly cache add args [ 'ts-node-dev', null ]
+88 verbose cache add spec ts-node-dev
+89 verbose stack Error: Missing required argument #1
+89 verbose stack     at andLogAndFinish (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/fetch-package-metadata.js:31:3)
+89 verbose stack     at fetchPackageMetadata (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/fetch-package-metadata.js:51:22)
+89 verbose stack     at resolveWithNewModule (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/install/deps.js:515:12)
+89 verbose stack     at /root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/install/deps.js:243:5
+89 verbose stack     at /root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:35
+89 verbose stack     at Array.forEach (native)
+89 verbose stack     at /root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:11
+89 verbose stack     at Array.forEach (native)
+89 verbose stack     at asyncMap (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/node_modules/slide/lib/async-map.js:51:8)
+89 verbose stack     at exports.loadRequestedDeps (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/install/deps.js:241:3)
+90 verbose cwd /home/clases/asw/w1-sync
+91 error Linux 5.4.0-216-generic
+92 error argv "/root/.nvm/versions/node/v6.3.1/bin/node" "/root/.nvm/versions/node/v6.3.1/bin/npm" "i" "-D" "typescript" "@types/node" "ts-node-dev" "rimraf"
+93 error node v6.3.1
+94 error npm  v3.10.3
+95 error code EMISSINGARG
+96 error typeerror Error: Missing required argument #1
+96 error typeerror     at andLogAndFinish (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/fetch-package-metadata.js:31:3)
+96 error typeerror     at fetchPackageMetadata (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/fetch-package-metadata.js:51:22)
+96 error typeerror     at resolveWithNewModule (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/install/deps.js:515:12)
+96 error typeerror     at /root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/install/deps.js:243:5
+96 error typeerror     at /root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:35
+96 error typeerror     at Array.forEach (native)
+96 error typeerror     at /root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:11
+96 error typeerror     at Array.forEach (native)
+96 error typeerror     at asyncMap (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/node_modules/slide/lib/async-map.js:51:8)
+96 error typeerror     at exports.loadRequestedDeps (/root/.nvm/versions/node/v6.3.1/lib/node_modules/npm/lib/install/deps.js:241:3)
+97 error typeerror This is an error with npm itself. Please report this error at:
+97 error typeerror     <http://github.com/npm/npm/issues>
+98 verbose exit [ 1, true ]
