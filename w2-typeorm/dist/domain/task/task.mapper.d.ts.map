@@ -1,0 +1,1 @@
+{"version":3,"file":"task.mapper.d.ts","sourceRoot":"","sources":["../../../src/domain/task/task.mapper.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,0BAA0B,CAAC;AACtD,OAAO,EAAE,IAAI,EAAE,MAAM,QAAQ,CAAC;AAE9B,qBAAa,UAAU;IACrB,MAAM,CAAC,QAAQ,CAAC,MAAM,EAAE,UAAU,GAAG,IAAI;CAG1C"}

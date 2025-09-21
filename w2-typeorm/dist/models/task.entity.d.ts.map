@@ -1,0 +1,1 @@
+{"version":3,"file":"task.entity.d.ts","sourceRoot":"","sources":["../../src/models/task.entity.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAE3C,qBACa,UAAU;IAErB,EAAE,EAAG,MAAM,CAAC;IAGZ,KAAK,EAAG,MAAM,CAAC;IAGf,WAAW,EAAG,MAAM,GAAG,IAAI,CAAC;IAG5B,WAAW,EAAG,OAAO,CAAC;IAGtB,IAAI,EAAG,UAAU,CAAC;CACnB"}
