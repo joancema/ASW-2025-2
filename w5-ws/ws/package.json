@@ -1,5 +1,5 @@
 {
-  "name": "rest",
+  "name": "ws",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -20,12 +20,12 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/axios": "^4.0.1",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",
-    "axios": "^1.12.2",
+    "@nestjs/platform-socket.io": "^11.1.7",
+    "@nestjs/websockets": "^11.1.7",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },

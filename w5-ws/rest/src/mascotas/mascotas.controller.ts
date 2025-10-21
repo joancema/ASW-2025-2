@@ -2,14 +2,30 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MascotasService } from './mascotas.service';
 import { CreateMascotaDto } from './dto/create-mascota.dto';
 import { UpdateMascotaDto } from './dto/update-mascota.dto';
+import { HttpService } from '@nestjs/axios';
+import { firstValueFrom } from 'rxjs';
 
 @Controller('mascotas')
 export class MascotasController {
-  constructor(private readonly mascotasService: MascotasService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly mascotasService: MascotasService) {}
 
   @Post()
-  create(@Body() createMascotaDto: CreateMascotaDto) {
-    return this.mascotasService.create(createMascotaDto);
+  async create(@Body() createMascotaDto: CreateMascotaDto) {
+    const mascotaCreada= this.mascotasService.create(createMascotaDto);
+    try {
+      await firstValueFrom(
+        this.httpService.post(
+          'http://localhost:3001/notificaciones/mascota-creada',
+          mascotaCreada
+        )
+      );
+      console.log('✅ Notificación enviada al WebSocket');
+    } catch (error) {
+      console.log('⚠️ WebSocket no disponible:', error.message);
+    }
+    return mascotaCreada;
   }
 
   @Get()
