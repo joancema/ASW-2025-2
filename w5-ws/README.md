@@ -416,15 +416,24 @@ npm install @nestjs/websockets @nestjs/platform-socket.io
 - `@nestjs/websockets`: Módulo de NestJS para WebSockets
 - `@nestjs/platform-socket.io`: Adaptador para usar Socket.io (librería popular de WebSockets)
 
-### Paso 3: Generar el módulo de Mascotas
+### Paso 3: Generar el recurso de Mascotas
 
-Generamos el módulo sin el recurso completo, ya que usaremos un Gateway en vez de un controlador REST:
+Usamos el generador de recursos de NestJS, pero esta vez **sin generar los endpoints CRUD**:
 
 ```bash
-nest generate module mascotas
-nest generate service mascotas
-nest generate class mascotas/mascotas.gateway
+nest generate resource mascotas
 ```
+
+Te preguntará:
+- **¿Qué capa de transporte prefieres?** Selecciona `WebSockets`
+- **¿Generar puntos de entrada CRUD?** Selecciona `No`
+
+Esto generará:
+- `mascotas/mascotas.gateway.ts` - Gateway de WebSocket (en lugar de controlador)
+- `mascotas/mascotas.service.ts` - Servicio
+- `mascotas/mascotas.module.ts` - Módulo de NestJS
+
+**Nota:** A diferencia del proyecto REST, aquí NO generamos CRUD porque el WebSocket Server solo recibirá webhooks y emitirá eventos, no manejará operaciones CRUD directamente.
 
 ### Paso 4: Implementar el Gateway de WebSocket
 
@@ -491,19 +500,28 @@ export class MascotasModule {}
 **¿Por qué exportamos el Gateway?**
 Porque necesitamos usarlo desde el módulo de Notificaciones para emitir eventos cuando recibamos webhooks.
 
-### Paso 6: Generar el módulo de Notificaciones
+### Paso 6: Generar el recurso de Notificaciones
 
 Este módulo recibirá los webhooks de la API REST:
 
 ```bash
-nest generate module notificaciones
-nest generate controller notificaciones
-nest generate service notificaciones
+nest generate resource notificaciones
 ```
+
+Te preguntará:
+- **¿Qué capa de transporte prefieres?** Selecciona `REST API`
+- **¿Generar puntos de entrada CRUD?** Selecciona `No`
+
+Esto generará:
+- `notificaciones/notificaciones.controller.ts` - Controlador REST
+- `notificaciones/notificaciones.service.ts` - Servicio
+- `notificaciones/notificaciones.module.ts` - Módulo de NestJS
+
+**Nota:** Aunque este es un servidor WebSocket, el módulo de notificaciones usa REST porque necesita recibir webhooks HTTP desde la API REST.
 
 ### Paso 7: Implementar el controlador de Notificaciones
 
-Abre `src/notificaciones/notificaciones.controller.ts`:
+Abre `src/notificaciones/notificaciones.controller.ts` y reemplaza su contenido:
 
 ```typescript
 import { Body, Controller, Post } from '@nestjs/common';
