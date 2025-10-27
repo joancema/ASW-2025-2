@@ -11,7 +11,7 @@ import { Server, Socket } from 'socket.io'
 export class DivicesGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server:Server;
-  constructor() {}
+  constructor(private readonly divicesService: DivicesService) {}
   handleConnection(client: Socket) {
     console.log('Client connected:', client.id);
   }
