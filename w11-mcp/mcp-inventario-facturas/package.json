@@ -1,0 +1,27 @@
+{
+  "name": "mcp-inventario-facturas",
+  "version": "1.0.0",
+  "description": "Sistema de procesamiento inteligente de facturas usando Model Context Protocol (MCP) con Gemini AI",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd apps/backend && npm install && cd ../mcp-server && npm install && cd ../api-gateway && npm install",
+    "dev:backend": "cd apps/backend && npm run start:dev",
+    "dev:mcp": "cd apps/mcp-server && npm run dev",
+    "dev:gateway": "cd apps/api-gateway && npm run start:dev",
+    "dev:all": "concurrently --names \"BACKEND,MCP,GATEWAY\" --prefix-colors \"cyan,magenta,yellow\" \"npm run dev:backend\" \"npm run dev:mcp\" \"npm run dev:gateway\""
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "gemini",
+    "ai",
+    "invoice-processing",
+    "nestjs",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
