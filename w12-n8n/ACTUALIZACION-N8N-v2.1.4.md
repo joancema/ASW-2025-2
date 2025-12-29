@@ -11,14 +11,36 @@ He actualizado el workflow para que sea compatible con n8n v2.1.4. Los cambios p
 3. **Configuración del nodo Gemini AI**: URL y API key correctamente separados, usando modelo `gemini-2.5-flash`
 4. **TypeVersions**: Actualizados a las versiones más recientes de los nodos
 5. **Mapeo de columnas PostgreSQL**: Solo inserta columnas existentes (nombre, email, mensaje, categoria)
+6. **Actualización de resumen_ia**: Implementado con stored procedure para manejo seguro de caracteres especiales
 
-### 📝 Archivo Modificado
+### 📝 Archivos Modificados/Creados
 
-- `workflow/workflow-solucion.json` - Completamente actualizado y listo para importar
+- `workflow/workflow-solucion.json` - Workflow actualizado con llamada a stored procedure
+- `init-db/02-stored-procedure.sql` - Función PL/pgSQL para actualizar resumen_ia de forma segura
 
 ---
 
 ## Cómo Usar el Workflow Actualizado
+
+### Paso 0: Crear el Stored Procedure en PostgreSQL
+
+**Primero, ejecuta el stored procedure en la base de datos:**
+
+```bash
+docker exec -i estudiantesdb psql -U postgres -d n8n < init-db/02-stored-procedure.sql
+```
+
+Este procedimiento almacenado maneja correctamente el escape de caracteres especiales en el resumen de IA.
+
+**Verificar que se creó correctamente:**
+
+```bash
+docker exec estudiantesdb psql -U postgres -d n8n -c "\df actualizar_resumen_ia"
+```
+
+Deberías ver la función listada.
+
+---
 
 ### Paso 1: Eliminar el Workflow Anterior
 
@@ -149,5 +171,6 @@ cat workflow/workflow-solucion.json | python3 -m json.tool > /dev/null && echo "
 ---
 
 **Última actualización:** 2025-12-29
-**Versión del workflow:** v6 (compatible con n8n 2.1.4)
+**Versión del workflow:** v7 (compatible con n8n 2.1.4)
 **Modelo Gemini:** gemini-2.5-flash (probado y funcional)
+**Base de datos:** Stored procedure para actualización segura del resumen_ia

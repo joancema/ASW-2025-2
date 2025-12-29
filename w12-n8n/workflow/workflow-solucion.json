@@ -203,6 +203,34 @@
     },
     {
       "parameters": {
+        "jsCode": "// Obtener datos del nodo 'Preparar Telegram' (no del nodo Telegram)\n// porque Telegram devuelve la respuesta del API, no los datos de entrada\nconst prepareTelegramNode = $('Preparar Telegram').first().json;\nconst resumen = prepareTelegramNode.resumen_ia;\nconst recordId = prepareTelegramNode.record_id;\n\n// Escapar comillas simples para SQL (convertir ' en '')\nconst resumenEscapado = resumen.replace(/'/g, \"''\");\n\n// Construir la query SQL\nconst query = `SELECT * FROM actualizar_resumen_ia(${recordId}, '${resumenEscapado}');`;\n\nreturn {\n  query: query,\n  record_id: recordId,\n  resumen_ia: resumen\n};"
+      },
+      "id": "code-prepare-query",
+      "name": "Preparar Query SQL",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1550, 200]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "={{ $json.query }}",
+        "options": {}
+      },
+      "id": "postgres-update",
+      "name": "Actualizar Resumen",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [1750, 200],
+      "credentials": {
+        "postgres": {
+          "id": "postgres-credentials",
+          "name": "PostgreSQL Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
         "respondWith": "json",
         "responseBody": "={{ { \"success\": true, \"mensaje\": \"Formulario procesado exitosamente\", \"id\": $('PostgreSQL').item.json.id, \"created_at\": $('PostgreSQL').item.json.created_at } }}",
         "options": {
@@ -305,6 +333,28 @@
       ]
     },
     "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Preparar Query SQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar Query SQL": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Resumen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar Resumen": {
       "main": [
         [
           {
