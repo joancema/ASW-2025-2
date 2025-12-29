@@ -1,0 +1,327 @@
+{
+  "name": "Formulario Webhook - Solución Completa",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "form-submission",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "form-submission"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.nombre }}",
+              "operation": "isNotEmpty"
+            },
+            {
+              "value1": "={{ $json.body.email }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "if-validation",
+      "name": "Validar Datos",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "assign-nombre",
+              "name": "nombre",
+              "type": "string",
+              "value": "={{ $json.body.nombre }}"
+            },
+            {
+              "id": "assign-email",
+              "name": "email",
+              "type": "string",
+              "value": "={{ $json.body.email.toLowerCase() }}"
+            },
+            {
+              "id": "assign-mensaje",
+              "name": "mensaje",
+              "type": "string",
+              "value": "={{ $json.body.mensaje }}"
+            },
+            {
+              "id": "assign-categoria",
+              "name": "categoria",
+              "type": "string",
+              "value": "={{ $json.body.categoria }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-data",
+      "name": "Transformar Datos",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "submissions",
+          "mode": "list",
+          "cachedResultName": "submissions"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "matchingColumns": [
+            "nombre",
+            "email",
+            "mensaje",
+            "categoria"
+          ],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "postgres-insert",
+      "name": "PostgreSQL",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [850, 200],
+      "credentials": {
+        "postgres": {
+          "id": "postgres-credentials",
+          "name": "PostgreSQL Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "none",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyB7UEBLyyyB6nCsMLLHlJbusgUfEktD1tU"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "contents",
+              "value": "={{ [{\"parts\": [{\"text\": \"Resume en máximo 2 líneas el siguiente mensaje de categoría '\" + $json.categoria + \"': \" + $json.mensaje}]}] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "gemini-request",
+      "name": "Gemini AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1050, 200]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "assign-resumen",
+              "name": "resumen_ia",
+              "type": "string",
+              "value": "={{ $json.candidates[0].content.parts[0].text }}"
+            },
+            {
+              "id": "assign-id",
+              "name": "record_id",
+              "type": "number",
+              "value": "={{ $('PostgreSQL').item.json.id }}"
+            },
+            {
+              "id": "assign-telegram",
+              "name": "mensaje_telegram",
+              "type": "string",
+              "value": "=📬 *Nueva Submission Recibida*\\n\\n👤 *Nombre:* {{ $('Transformar Datos').item.json.nombre }}\\n✉️ *Email:* {{ $('Transformar Datos').item.json.email }}\\n📁 *Categoría:* {{ $('Transformar Datos').item.json.categoria }}\\n\\n💬 *Mensaje:*\\n{{ $('Transformar Datos').item.json.mensaje }}\\n\\n🤖 *Resumen IA:*\\n{{ $json.candidates[0].content.parts[0].text }}\\n\\n⏰ {{ $('PostgreSQL').item.json.created_at }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-telegram",
+      "name": "Preparar Telegram",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1250, 200]
+    },
+    {
+      "parameters": {
+        "chatId": "8412407901",
+        "text": "={{ $json.mensaje_telegram }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "telegram-send",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1450, 200],
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-credentials",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"success\": true, \"mensaje\": \"Formulario procesado exitosamente\", \"id\": $('PostgreSQL').item.json.id, \"created_at\": $('PostgreSQL').item.json.created_at } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "respond-success",
+      "name": "Respuesta Éxito",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1850, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"success\": false, \"error\": \"Campos requeridos faltantes: nombre y email son obligatorios\" } }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "respond-error",
+      "name": "Respuesta Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [650, 400]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validar Datos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar Datos": {
+      "main": [
+        [
+          {
+            "node": "Transformar Datos",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respuesta Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transformar Datos": {
+      "main": [
+        [
+          {
+            "node": "PostgreSQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PostgreSQL": {
+      "main": [
+        [
+          {
+            "node": "Gemini AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini AI": {
+      "main": [
+        [
+          {
+            "node": "Preparar Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar Telegram": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Respuesta Éxito",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "workflow-solucion-v5-final",
+  "id": "workflow-lab-n8n-v5",
+  "meta": {
+    "instanceId": "n8n-lab-uleam"
+  },
+  "tags": []
+}
